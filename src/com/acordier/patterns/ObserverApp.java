@@ -1,5 +1,10 @@
 package com.acordier.patterns;
-
+/*
+ * Observer
+ * A behavioral design-pattern 
+ * Any event on Nodes that have registered our 
+ * concrete observer will trigger a log event 
+ */
 public class ObserverApp {
 
 	public static void main(String[] args) {

@@ -3,7 +3,11 @@ package com.acordier.patterns;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Date;
-
+/**
+ * As an implementation of Subject Node can register and notify observers.
+ * @author acordier
+ *
+ */
 public class Node implements Subject {
 	
 	private Collection<Observer> observerCollection;
