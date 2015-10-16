@@ -1,17 +1,14 @@
 package com.acordier.patterns;
 
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.Date;
 /**
  * As an implementation of Subject Node can register and notify observers.
  * @author acordier
  *
  */
-public class Node implements Subject {
+public class Node extends Subject {
 	
-	private Collection<Observer> observerCollection;
-	private EventImpl event;
 	private String name;
 	
 	public Node(){
@@ -23,30 +20,13 @@ public class Node implements Subject {
 		this();
 		this.name = name;
 	}
-	
-	@Override
-	public void registerObserver(Observer observer) {
-		this.observerCollection.add(observer);
-	}
-
-	@Override
-	public void unregisterObserver(Observer observer) {
-		this.observerCollection.remove(observer);		
-	}
-
-	@Override
-	public void notifyObservers() {
-		for(Observer observer : observerCollection){
-			observer.update(this.event);
-		}
-	}
 
 	public void createChildNode(){
 		/* business logic to create a child node */
 		synchronized(event){
-			this.event.setTimestamp(new Date().getTime());
-			this.event.setEventData("child removed from node " + this.name);
-			this.event.setOriginator(this);
+			((EventImpl)this.event).setTimestamp(new Date().getTime());
+			((EventImpl)this.event).setEventData("child removed from node " + this.name);
+			((EventImpl)this.event).setOriginator(this);
 			notifyObservers();
 		}
 	}
@@ -54,9 +34,9 @@ public class Node implements Subject {
 	public void removeChildNode(){
 		/* business logic to remove a child node */
 		synchronized(event){
-			this.event.setTimestamp(new Date().getTime());
-			this.event.setEventData("child removed from node " + this.name);
-			this.event.setOriginator(this);
+			((EventImpl)this.event).setTimestamp(new Date().getTime());
+			((EventImpl)this.event).setEventData("child removed from node " + this.name);
+			((EventImpl)this.event).setOriginator(this);
 			notifyObservers();
 		}
 	}
